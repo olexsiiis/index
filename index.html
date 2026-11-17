@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090711">
+<title>Александра — Web Developer</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #090711;
+  --pink: #ff5ca8;
+  --violet: #a78bfa;
+  --text: #f8f4fb;
+  --muted: #aaa2b7;
+  --line: rgba(255,255,255,.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: Manrope, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 80% 10%,rgba(151,76,190,.19),transparent 35%),
+    radial-gradient(ellipse at 8% 50%,rgba(255,67,147,.11),transparent 32%),
+    linear-gradient(135deg,#090711,#0d0a17 55%,#090711);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  width: min(1180px,calc(100% - 48px));
+  margin: auto;
+}
+
+/* HEADER */
+
+header {
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0 max(24px,calc((100vw - 1180px)/2));
+  background: rgba(9,7,17,.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.logo {
+  font: 700 25px "Space Grotesk";
+  letter-spacing: -1.5px;
+}
+
+.logo b {
+  color: var(--pink);
+}
+
+nav {
+  display: flex;
+  gap: 32px;
+}
+
+nav a {
+  font-size: 13px;
+  color: #c5bdce;
+  transition: .25s;
+}
+
+nav a:hover {
+  color: var(--pink);
+}
+
+.nav-cta {
+  padding: 11px 18px;
+  border: 1px solid rgba(255,92,168,.45);
+  border-radius: 30px;
+  color: #ffd5e8;
+  font-size: 12px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 690px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 50px;
+  padding-top: 55px;
+  padding-bottom: 90px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border: 1px solid rgba(255,92,168,.27);
+  border-radius: 30px;
+  background: rgba(255,92,168,.07);
+  color: #ffacd0;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-bottom: 27px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8df5c2;
+  box-shadow: 0 0 12px #8df5c2;
+}
+
+h1 {
+  font: 700 clamp(48px,6.5vw,82px)/.99 "Space Grotesk";
+  letter-spacing: -5px;
+}
+
+.gradient {
+  background: linear-gradient(100deg,#ff8fc2,#c6a1ff,#8ce8e0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero h2 {
+  font-size: 19px;
+  color: #e3c8dc;
+  margin: 26px 0 15px;
+}
+
+.hero p {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.actions {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 22px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.primary {
+  background: linear-gradient(110deg,#ff79b6,#b477ef);
+  box-shadow: 0 10px 35px rgba(255,92,168,.22);
+}
+
+.primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(255,92,168,.38);
+}
+
+.secondary {
+  border: 1px solid var(--line);
+}
+
+.secondary:hover {
+  border-color: var(--pink);
+  color: #ffacd0;
+}
+
+/* HERO IMAGE */
+
+.hero-art {
+  height: 490px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.orbit {
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  transform: rotate(-24deg);
+}
+
+.orbit::before,
+.orbit::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(255,92,168,.24);
+  border-radius: 50%;
+  inset: 35px -35px;
+  transform: rotate(55deg);
+}
+
+.orbit::after {
+  inset: 75px -75px;
+  border-color: rgba(167,139,250,.2);
+  transform: rotate(-45deg);
+}
+
+.hero-photo {
+  position: relative;
+  width: 270px;
+  height: 350px;
+  z-index: 3;
+  border: 3px solid #ff79b6;
+  border-radius: 25px;
+  overflow: hidden;
+  transform: rotate(3deg);
+  box-shadow: 0 0 45px rgba(255,92,168,.4);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.float-card {
+  position: absolute;
+  z-index: 4;
+  padding: 13px 16px;
+  background: rgba(23,18,37,.9);
+  border: 1px solid rgba(255,255,255,.13);
+  backdrop-filter: blur(14px);
+  border-radius: 14px;
+  font-size: 11px;
+  color: #e9ddeb;
+}
+
+.float-card strong {
+  display: block;
+  color: #ff9bc9;
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+.fc1 {
+  top: 52px;
+  right: 5px;
+}
+
+.fc2 {
+  bottom: 57px;
+  left: 0;
+}
+
+.spark {
+  position: absolute;
+  color: #ffb7d7;
+  font-size: 22px;
+  animation: twinkle 2.5s infinite alternate;
+}
+
+.s1 {
+  top: 20px;
+  left: 20%;
+}
+
+.s2 {
+  right: 7%;
+  bottom: 70px;
+}
+
+@keyframes twinkle {
+  to {
+    opacity: .25;
+    transform: scale(.7) rotate(35deg);
+  }
+}
+
+/* RUNNING LINE */
+
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+  background: rgba(255,255,255,.02);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 35px;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee span {
+  font: 700 14px "Space Grotesk";
+  letter-spacing: 2px;
+  color: #8c8298;
+}
+
+.marquee b {
+  color: var(--pink);
+  font-size: 18px;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* SECTIONS */
+
+.section {
+  padding: 95px 0;
+  position: relative;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.kicker {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--pink);
+  font-weight: 800;
+  margin-bottom: 13px;
+}
+
+.section h2 {
+  font: 700 clamp(32px,4vw,48px) "Space Grotesk";
+  letter-spacing: -2px;
+}
+
+.section h2 span {
+  color: #ff83ba;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 13px auto 0;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.018),
+    rgba(255,255,255,.035)
+  );
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+}
+
+.card {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,.055),
+    rgba(255,255,255,.018)
+  );
+  transition: .35s;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255,92,168,.55);
+  box-shadow: 0 20px 55px rgba(0,0,0,.25);
+}
+
+.card-number {
+  font: 600 10px "Space Grotesk";
+  color: #766d82;
+  letter-spacing: 2px;
+  margin-bottom: 13px;
+}
+
+.card-visual {
+  height: 160px;
+  border-radius: 15px;
+  margin-bottom: 23px;
+  overflow: hidden;
+  background: #1a1428;
+  border: 1px solid rgba(255,255,255,.07);
+}
+
+.card-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: .5s;
+}
+
+.card:hover .card-visual img {
+  transform: scale(1.08);
+}
+
+.card h3 {
+  font-size: 17px;
+  margin-bottom: 11px;
+}
+
+.card p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* TECHNOLOGIES */
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 14px;
+}
+
+.tech {
+  display: flex;
+  gap: 17px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.025);
+  transition: .3s;
+}
+
+.tech:hover {
+  background: rgba(255,92,168,.06);
+  border-color: rgba(255,92,168,.4);
+  transform: translateY(-4px);
+}
+
+.tech-icon {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,92,168,.1);
+  font-size: 23px;
+}
+
+.tech h3 {
+  font: 700 16px "Space Grotesk";
+  color: #ff9bc8;
+  margin: 2px 0 8px;
+}
+
+.tech p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* FEATURES */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+}
+
+.feature {
+  padding: 25px 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,.025);
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 25px;
+  margin-bottom: 14px;
+}
+
+.feature h3 {
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+
+.feature p {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* CONTACT */
+
+.contact {
+  padding: 65px 30px;
+  border: 1px solid rgba(255,92,168,.25);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      ellipse at 80% 20%,
+      rgba(167,139,250,.17),
+      transparent 40%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(255,92,168,.1),
+      rgba(255,255,255,.025)
+    );
+  text-align: center;
+}
+
+.contact h2 {
+  font: 700 clamp(30px,4vw,48px) "Space Grotesk";
+  margin-bottom: 14px;
+}
+
+.contact p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 26px;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 30px 0 40px;
+  color: #766e80;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+/* ANIMATION */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 65px;
+  }
+
+  .hero-art {
+    height: 410px;
+    grid-row: 1;
+  }
+
+  .hero p {
+    margin: auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cards .card:last-child {
+    grid-column: 1/-1;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width:620px) {
+  header {
+    height: auto;
+    min-height: 76px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 18px;
+    gap: 13px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    gap: 17px;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    font-size: 11px;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .wrap {
+    width: min(100% - 34px,1180px);
+  }
+
+  .hero {
+    padding: 35px 0 65px;
+    gap: 10px;
+    min-height: auto;
+  }
+
+  .hero-art {
+    height: 350px;
+  }
+
+  .hero-photo {
+    width: 210px;
+    height: 275px;
+  }
+
+  h1 {
+    font-size: 49px;
+    letter-spacing: -3px;
+  }
+
+  .hero h2 {
+    font-size: 16px;
+  }
+
+  .hero p {
+    font-size: 12px;
+  }
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .cards,
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cards .card:last-child {
+    grid-column: auto;
+  }
+
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact {
+    padding: 48px 20px;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <a class="logo" href="#home">&lt;<b>/</b>&gt; Александра</a>
+
+  <nav>
+    <a href="#home">Главная</a>
+    <a href="#achievements">Достижения</a>
+    <a href="#technologies">Технологии</a>
+    <a href="#features">Преимущества</a>
+  </nav>
+
+  <a class="nav-cta"
+     href="https://t.me/olexsiis"
+     target="_blank"
+     rel="noopener noreferrer">
+    Написать мне ↗
+  </a>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero wrap" id="home">
+
+  <div class="hero-info reveal">
+
+    <div class="eyebrow">
+      <i class="dot"></i>
+      WEB DEVELOPER · OPEN TO IDEAS
+    </div>
+
+    <h1>
+      Привет! Я<br>
+      <span class="gradient">Александра</span> —<br>
+      создаю веб.
+    </h1>
+
+    <h2>
+      Превращаю идеи в красивые цифровые пространства ✦
+    </h2>
+
+    <p>
+      Создаю современные, удобные и адаптивные интерфейсы.
+      Люблю продуманную типографику, выразительные детали
+      и сайты, которыми приятно пользоваться — на любом экране.
+    </p>
+
+    <div class="actions">
+
+      <a class="btn primary"
+         href="https://t.me/olexsiis"
+         target="_blank"
+         rel="noopener noreferrer">
+        ✈ Связаться со мной ↗
+      </a>
+
+      <a class="btn secondary" href="#achievements">
+        Исследовать портфолио ↓
+      </a>
+
+    </div>
+  </div>
+
+  <div class="hero-art reveal">
+
+    <div class="orbit"></div>
+
+    <div class="hero-photo">
+      <img src="workplace.jpg"
+           alt="Рабочее место Александры">
+    </div>
+
+    <span class="spark s1">✳</span>
+    <span class="spark s2">✦</span>
+
+    <div class="float-card fc1">
+      <strong>100%</strong>
+      внимание к деталям
+    </div>
+
+    <div class="float-card fc2">
+      <strong>HTML · CSS · JS</strong>
+      мои инструменты
+    </div>
+
+  </div>
+
+</section>
+
+<!-- RUNNING LINE -->
+
+<div class="marquee">
+  <div class="marquee-track">
+
+    <span>DESIGN WITH PURPOSE <b>✳</b></span>
+    <span>PIXEL PERFECT <b>✳</b></span>
+    <span>RESPONSIVE WEB <b>✳</b></span>
+    <span>CLEAN CODE <b>✳</b></span>
+    <span>CREATIVE IDEAS <b>✳</b></span>
+
+    <span>DESIGN WITH PURPOSE <b>✳</b></span>
+    <span>PIXEL PERFECT <b>✳</b></span>
+    <span>RESPONSIVE WEB <b>✳</b></span>
+    <span>CLEAN CODE <b>✳</b></span>
+    <span>CREATIVE IDEAS <b>✳</b></span>
+
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+
+<section class="section achievements" id="achievements">
+
+  <div class="wrap">
+
+    <div class="section-head reveal">
+
+      <div class="kicker">A LITTLE ABOUT MY JOURNEY</div>
+
+      <h2>Мои <span>достижения</span></h2>
+
+      <p class="sub">
+        Каждый проект — новый опыт, каждая задача —
+        возможность сделать лучше.
+      </p>
+
+    </div>
+
+    <div class="cards">
+
+      <article class="card reveal">
+
+        <div class="card-number">01 / LEARNING</div>
+
+        <div class="card-visual">
+          <img src="cod.jpg" alt="Программирование">
+        </div>
+
+        <h3>Обучение и курсы</h3>
+
+        <p>
+          Осваиваю современную семантическую вёрстку,
+          архитектуру БЭМ, CSS-селекторы и принципы
+          создания понятной структуры интерфейсов.
+        </p>
+
+      </article>
+
+      <article class="card reveal">
+
+        <div class="card-number">02 / PRACTICE</div>
+
+        <div class="card-visual">
+          <img src="interface.jpg" alt="Дизайн интерфейсов">
+        </div>
+
+        <h3>Практика и проекты</h3>
+
+        <p>
+          Создаю адаптивные интерфейсы и лендинги,
+          уделяю внимание композиции, аккуратности
+          вёрстки и удобству на разных устройствах.
+        </p>
+
+      </article>
+
+      <article class="card reveal">
+
+        <div class="card-number">03 / DEPLOY</div>
+
+        <div class="card-visual">
+          <img src="gid.jpg" alt="GitHub">
+        </div>
+
+        <h3>Git & GitHub Pages</h3>
+
+        <p>
+          Использую Git для контроля версий,
+          храню проекты на GitHub и учусь самостоятельно
+          публиковать сайты в интернете.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TECHNOLOGIES -->
+
+<section class="section" id="technologies">
+
+  <div class="wrap">
+
+    <div class="section-head reveal">
+
+      <div class="kicker">TOOLS IN MY TOOLBOX</div>
+
+      <h2>
+        Технологии, которыми <span>я владею</span>
+      </h2>
+
+      <p class="sub">
+        Мой набор инструментов для создания выразительных
+        и функциональных веб-страниц.
+      </p>
+
+    </div>
+
+    <div class="tech-grid">
+
+      <article class="tech reveal">
+        <div class="tech-icon">🌐</div>
+        <div>
+          <h3>HTML5</h3>
+          <p>
+            Семантическая структура страниц,
+            современные теги и доступность контента.
+          </p>
+        </div>
+      </article>
+
+      <article class="tech reveal">
+        <div class="tech-icon">🎨</div>
+        <div>
+          <h3>CSS3</h3>
+          <p>
+            Стили, типографика, цветовые системы,
+            анимации и визуальные эффекты.
+          </p>
+        </div>
+      </article>
+
+      <article class="tech reveal">
+        <div class="tech-icon">⚡</div>
+        <div>
+          <h3>JavaScript</h3>
+          <p>
+            Основы языка, переменные, функции,
+            события и интерактивность интерфейсов.
+          </p>
+        </div>
+      </article>
+
+      <article class="tech reveal">
+        <div class="tech-icon">📐</div>
+        <div>
+          <h3>Flexbox</h3>
+          <p>
+            Гибкое расположение элементов,
+            выравнивание и удобные композиции.
+          </p>
+        </div>
+      </article>
+
+      <article class="tech reveal">
+        <div class="tech-icon">🧩</div>
+        <div>
+          <h3>CSS Grid</h3>
+          <p>
+            Сложные адаптивные макеты,
+            сетки карточек и структурированные блоки.
+          </p>
+        </div>
+      </article>
+
+      <article class="tech reveal">
+        <div class="tech-icon">💻</div>
+        <div>
+          <h3>Git & GitHub</h3>
+          <p>
+            Контроль версий, хранение кода
+            и публикация проектов через GitHub Pages.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="section" id="features">
+
+  <div class="wrap">
+
+    <div class="section-head reveal">
+
+      <div class="kicker">WHAT MATTERS TO ME</div>
+
+      <h2>Мой подход к <span>работе</span></h2>
+
+    </div>
+
+    <div class="features">
+
+      <article class="feature reveal">
+        <div class="feature-icon">✧</div>
+        <h3>Качество</h3>
+        <p>Аккуратный, семантичный и понятный код.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon">▣</div>
+        <h3>Адаптивность</h3>
+        <p>Комфортный просмотр на телефонах и компьютерах.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon">↯</div>
+        <h3>Скорость</h3>
+        <p>Внимание к оптимизации и быстрой загрузке.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon">⌘</div>
+        <h3>Развитие</h3>
+        <p>Постоянно изучаю новое и улучшаю свои проекты.</p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="wrap" style="padding-bottom:75px">
+
+  <div class="contact reveal">
+
+    <div class="kicker">HAVE A NICE IDEA?</div>
+
+    <h2>
+      Давай создадим<br>
+      <span class="gradient">что-то классное.</span>
+    </h2>
+
+    <p>
+      Открыта к интересным идеям, проектам и сотрудничеству.
+    </p>
+
+    <a class="btn primary"
+       href="https://t.me/olexsiis"
+       target="_blank"
+       rel="noopener noreferrer">
+      Написать в Telegram ↗
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="wrap">
+
+  <span>© 2026 Александра · Web Developer</span>
+
+  <span>Сделано с интересом к деталям ✦</span>
+
+</footer>
+
+<!-- JAVASCRIPT ANIMATIONS -->
+
+<script>
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add('visible');
+
+      observer.unobserve(entry.target);
+
+    }
+
+  });
+
+}, {
+  threshold: 0.12
+});
+
+document.querySelectorAll('.reveal').forEach(el => {
+
+  observer.observe(el);
+
+});
+
+</script>
+
+</body>
+</html>
